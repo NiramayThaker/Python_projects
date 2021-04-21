@@ -17,7 +17,7 @@ reps = 0
 timer = None
 
 
-# ---------------------------- TIMER RESET ------------------------------- #
+# Reset timer
 def reset_timer():
     window.after_cancel(timer)
     canvas.itemconfig(timer_text, text="00:00")
@@ -27,7 +27,7 @@ def reset_timer():
     reps = 0
 
 
-# ---------------------------- TIMER MECHANISM ------------------------------- #
+# TIMER MECHANISM
 def start_timer():
     global reps
     reps += 1
@@ -45,7 +45,7 @@ def start_timer():
         count_down(work_time)
         timer_label.config(text="Work Session", fg=GREEN, font=(FONT_NAME, 45))
 
-# ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
+# COUNTDOWN Logic
 def count_down(count):
     count_min = math.floor(count / 60)
     count_sec = math.floor(count % 60)
@@ -63,7 +63,7 @@ def count_down(count):
         tick_mark_label.config(text=marks)
 
 
-# ---------------------------- UI SETUP ------------------------------- #
+# GUI
 
 window = Tk()
 window.title("Pomodore timer")  # Pomodore means tomato in italian
