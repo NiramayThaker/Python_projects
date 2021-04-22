@@ -14,7 +14,7 @@ def save_password():
         save_data.write(f'Password -> {password_data}\n')
 
 
-# UI SETUP
+# GUI SETUP
 
 window = Tk()
 window.title("Password manager")
