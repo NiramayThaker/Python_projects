@@ -3,8 +3,6 @@ from tkinter import *
 BROWN = 845460
 
 
-# ---------------------------- PASSWORD GENERATOR ------------------------------- #
-
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_password():
     website_data = website_entry.get()
