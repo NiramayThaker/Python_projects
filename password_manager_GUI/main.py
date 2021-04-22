@@ -3,7 +3,7 @@ from tkinter import *
 BROWN = 845460
 
 
-# ---------------------------- SAVE PASSWORD ------------------------------- #
+# To SAVE PASSWORD 
 def save_password():
     website_data = website_entry.get()
     email_username_data = email_username_entry.get()
