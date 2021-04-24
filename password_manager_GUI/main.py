@@ -58,7 +58,7 @@ def clear_screen():
     email_username_entry.delete(0, END)
 
 
-# ---------------------------- UI SETUP ------------------------------- #
+# Setting up GUI
 
 window = Tk()
 window.title("Password manager")
