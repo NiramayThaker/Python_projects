@@ -1,11 +1,15 @@
+import json
+from random import shuffle, choice, randint
 from tkinter import *
 from tkinter import messagebox  # It is not class of tkinter so we have to import it
+
 import pyperclip
-from random import shuffle, choice, randint
+
 # from passwd_generator import generate_password
 
 FONT = "Arial"
 FONT_SIZE = 11
+
 
 # Password_generator
 def generate_password():
@@ -21,11 +25,10 @@ def generate_password():
     password_symbol = [choice(symbols) for _ in range(randint(2, 4))]
     password_numbers = [choice(numbers) for _ in range(randint(2, 4))]
 
-    password_list = []
     password_list = password_letter + password_symbol + password_numbers
     shuffle(password_list)
-    password = "".join(password_list)
 
+    password = "".join(password_list)
     password_entry.delete(0, END)
     password_entry.insert(0, f"{password}")
     pyperclip.copy(password)
@@ -36,20 +39,59 @@ def save_password():
     website_data = website_entry.get()
     email_data = email_username_entry.get()
     passwd_data = password_entry.get()
+    new_data = {
+        website_data: {
+            "email": email_data,
+            "password": passwd_data,
+        }
+
+    }
 
     if len(website_data) == 0 or len(email_data) == 0 or len(passwd_data) == 0:
         messagebox.showinfo(title="Error", message="Don't let any field empty .!")
     else:
-        verification_pop_up = messagebox.askokcancel(title=website_data,
-                                                     message=f'Detail you entered:\nEmail: {email_data}\n'
-                                                             f'Password: {passwd_data}\nIs it ok to save ..?')
-        if verification_pop_up:
-            with open("./data.txt", mode="a") as save_data:
-                save_data.write(
-                    f'| Website: {website_data} || Email ID or username: {email_data} || Password: {passwd_data} |\n')
-                website_entry.delete(0, END)
-                password_entry.delete(0, END)
-                email_username_entry.delete(0, END)
+        try:
+            with open("data.json", "r") as data_file:
+                # Reading old data
+                data = json.load(data_file)
+        except FileNotFoundError:
+            with open("data.json", "w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+        else:
+            # Updating old data with new data
+            data.update(new_data)
+
+            with open("data.json", "w") as data_file:
+                # Saving updated data
+                json.dump(data, data_file, indent=4)
+        finally:
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
+            email_username_entry.delete(0, END)
+
+# verification_pop_up = messagebox.askokcancel(title=website_data,
+#                                              message=f'Detail you entered:\nEmail: {email_data}\n'
+#                                                      f'Password: {passwd_data}\nIs it ok to save ..?')
+# if verification_pop_up:
+#     with open("./data.txt", mode="a") as save_data:
+#         save_data.write(
+#             f'| Website: {website_data} || Email ID or username: {email_data} || Password: {passwd_data} |\n')
+
+
+def find_password():
+    website = website_entry.get()
+    try:
+        with open("data.json") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Error", message="No Data File Found.")
+    else:
+        if website in data:
+            email = data[website]["email"]
+            password = data[website]["password"]
+            messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
+        else:
+            messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
 
 
 def clear_screen():
@@ -75,6 +117,9 @@ website_entry = Entry(width=53, bg="Grey", fg="white")
 website_entry.insert(0, "www.abc.com")
 website_entry.focus()
 website_entry.grid(column=1, row=3, columnspan=2)
+
+search_button = Button(text="Search", width=16, command=find_password, bg="dark Grey", fg="White"   )
+search_button.grid(row=3, column=2)
 
 email_username = Label(text="Email/Username:", font=(FONT, FONT_SIZE), bg="Black", fg="White")
 email_username.grid(column=0, row=4)
