@@ -1,17 +1,13 @@
 from tkinter import *
 from tkinter import messagebox  # It is not class of tkinter so we have to import it
 import pyperclip
-
+from random import shuffle, choice, randint
 # from passwd_generator import generate_password
 
 FONT = "Arial"
 FONT_SIZE = 11
 
 # Password_generator
-from random import shuffle, choice, randint
-
-
-# Generating password
 def generate_password():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
                'v',
