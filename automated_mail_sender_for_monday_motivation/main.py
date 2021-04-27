@@ -14,9 +14,9 @@ if weekday == 1:
         quote = random.choice(all_quotes)
 
     print(quote)
-    with smtplib.SMTP('smtp.gmail.com', 587) as connection:
-        connection.starttls()
-        connection.login(MY_EMAIL, MY_PASSWORD)
+    with smtplib.SMTP('smtp.gmail.com', 587) as connection:  # Will set up the connection
+        connection.starttls()   # tls is for  encrypting, TLS = Transport Layer Security
+        connection.login(MY_EMAIL, MY_PASSWORD)  
         connection.sendmail(
             from_addr=MY_EMAIL,
             to_addrs=SEND_TO,
