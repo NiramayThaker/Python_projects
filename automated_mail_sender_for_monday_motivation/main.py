@@ -20,5 +20,5 @@ if weekday == 1:
         connection.sendmail(
             from_addr=MY_EMAIL,
             to_addrs=SEND_TO,
-            msg=f"Subject:Sending Tuesday Motivation from pycharm\n\n{quote}"
+            msg=f"Subject:Monday Motivation\n\n{quote}"
         )
