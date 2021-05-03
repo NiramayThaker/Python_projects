@@ -1,5 +1,7 @@
-from tkinter import *
+# API url
+# http://api.kanye.rest/
 
+from tkinter import *
 import requests
 
 
