@@ -38,6 +38,6 @@ if current_price <= your_price:
 		result = connection.login("YOUR_GMAIL", "YOUR_GMAIL_PASSWORD")
 		connection.sendmail(
 			from_addr="SENDER_MAIL",
-			to_addrs="RECIVER_MAIL",
+			to_addrs="RECEIVER_MAIL",
 			msg=f"Hurryyy Uppp ..! your item is available at your price\n₹{your_price}"
 		)
