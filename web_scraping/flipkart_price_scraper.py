@@ -35,7 +35,7 @@ if current_price <= your_price:
 
 	with smtplib.SMTP(host='smpt.gmail.com', port=587) as connection:
 		connection.starttls()
-		result = connection.login("thakerniramay@gmai.com", "th@kerNir@m@Y#3#3*")
+		result = connection.login("YOUR_GMAIL", "YOUR_GMAIL_PASSWORD")
 		connection.sendmail(
 			from_addr="thakerniramay@gmai.com",
 			to_addrs="thakerniramay@gmai.com",
