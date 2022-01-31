@@ -37,7 +37,7 @@ if current_price <= your_price:
 		connection.starttls()
 		result = connection.login("YOUR_GMAIL", "YOUR_GMAIL_PASSWORD")
 		connection.sendmail(
-			from_addr="thakerniramay@gmai.com",
-			to_addrs="thakerniramay@gmai.com",
+			from_addr="SENDER_MAIL",
+			to_addrs="RECIVER_MAIL",
 			msg=f"Hurryyy Uppp ..! your item is available at your price\n₹{your_price}"
 		)
